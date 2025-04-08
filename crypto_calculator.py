@@ -154,7 +154,8 @@ output_row = dbc.Container(
 # In[ ]:
 
 
-app = Dash(external_stylesheets = [dbc.themes.JOURNAL])
+app = Dash(__name__, external_stylesheets = [dbc.themes.JOURNAL])
+server = app.server
 
 description = """
 Check the latest cryptocurrency prices against all USD, EUR and GBP. 
@@ -211,8 +212,8 @@ def update_conversion(coin, currency, amount):
             return html.H4(f'{amount:,} {coin} = {symbol[currency]}{conversion:,.2f}')
             
     
-
-app.run(debug = True)
+if __name__ == '__main__':
+    app.run(debug = True)
 
 
 # In[ ]:
